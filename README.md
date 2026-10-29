@@ -1,4 +1,5 @@
 # ESP32 Real-Time HUB75 Web Drawing Board & Photo Frame (128×64)
+<img width="1600" height="1200" alt="WhatsApp Image 2026-10-29 at 12 49 27" src="https://github.com/user-attachments/assets/917a1369-a139-4c8f-b86b-1624eeea9b0c" />
 
 Turn an ESP32 and two daisy-chained 64×64 HUB75 LED panels into a live, interactive drawing canvas and digital photo display. Anyone on your local network (or over the internet) can open a webpage on their phone, tablet, or laptop and draw pixels, sketch in real time, or crop and upload photos directly to the wall display.
 
@@ -14,6 +15,7 @@ Turn an ESP32 and two daisy-chained 64×64 HUB75 LED panels into a live, interac
 - **Live Brightness Control:** Smooth on-screen slider (0 to 150) that adjusts panel brightness on the fly.
 - **Built-in Security & Anti-Spam:** PIN-protected access so unauthorized users or bots can't overwrite your canvas. Includes a firmware-level upload rate limiter to prevent people from spamming video streams.
 - **Self-Hosted:** The ESP32 hosts the entire web application from its internal flash—no external web hosting, cloud subscription, or companion apps required.
+<img width="1059" height="781" alt="Bildschirmfoto 2026-10-29 um 12 47 18" src="https://github.com/user-attachments/assets/3a73c47f-7bda-4a1b-ac92-4ab0e60c7ed5" />
 
 ---
 
@@ -123,16 +125,12 @@ HUB75 ribbon cables carry high-speed 10 MHz square waves that emit noticeable 2.
 
 ---
 
-## Remote Access (Optional: Cloudflare Tunnel / Nginx)
+## Remote Access (Optional)
 
-If you want your friends or roommates to draw on the matrix from outside your home network, you can expose it securely via **Cloudflare Tunnel** or an **Nginx reverse proxy** (e.g. on CasaOS or a home server).
+I wanted my friends outside of the network to be able to draw on to the screen as well so I used my selfhosted server to proxy it with NPM and exposese it via Cloudlflare Tunnel to my domain.
 
 The web interface automatically detects HTTPS and domain names, switching from standard `ws://<ip>:81` to secure `wss://<domain>/ws` over port 443.
 
-### Cloudflare Tunnel Setup (No Port Forwarding Required)
-In the Cloudflare Zero Trust Dashboard under **Tunnels > Public Hostnames**:
-1. **Hostname:** `led.yourdomain.com` | **Path:** `/ws` | **Service:** `HTTP://<ESP32_IP>:81` *(Enable WebSockets in HTTP Settings)*
-2. **Hostname:** `led.yourdomain.com` | **Path:** `(empty)` | **Service:** `HTTP://<ESP32_IP>:80`
 
 ### Nginx Reverse Proxy Config
 ```nginx
@@ -160,3 +158,7 @@ server {
 ## License
 
 MIT License. Free to use, modify, and build upon!
+
+
+##NOTE
+Coding and Documentation of this project was mainly done by AI so there might be bugs in the software.
